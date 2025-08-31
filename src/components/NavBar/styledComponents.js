@@ -7,13 +7,15 @@ export const NavbarContainer = styled.div`
   box-sizing: border-box;
   padding: 0.75rem 2rem;
   width: 100%;
-  background-color: #f1f5f9;
+  /* Use a prop to set the background color */
+  background-color: ${props => (props.isDarkTheme ? '#141414' : '#f1f5f9')};
   position: fixed;
 
   @media screen and (max-width: 768px) {
     padding: 0.5rem;
   }
 `
+
 export const NavLogoContainer = styled.div`
   width: 110px;
 
@@ -46,8 +48,8 @@ export const NavItem = styled.li`
     display: flex;
     align-items: center;
     cursor: pointer;
-    color: #00306e;
-    border: 1px solid #00306e;
+    color: ${props => (props.isDarkTheme ? '#ffffff' : '#00306e')};
+    border: 1px solid ${props => (props.isDarkTheme ? '#ffffff' : '#00306e')};
     outline: none;
     background: transparent;
     border-radius: 5px;
@@ -55,8 +57,8 @@ export const NavItem = styled.li`
     margin-left: 10px;
 
     &:hover {
-      background-color: #00306e;
-      color: #ffffff;
+      background-color: ${props => (props.isDarkTheme ? '#ffffff' : '#00306e')};
+      color: ${props => (props.isDarkTheme ? '#00306e' : '#ffffff')};
     }
   }
 
@@ -67,7 +69,7 @@ export const NavItem = styled.li`
     }
 
     .logout-btn:hover {
-      color: #00306e;
+      color: ${props => (props.isDarkTheme ? '#ffffff' : '#00306e')};
       background: none;
     }
   }
@@ -95,7 +97,7 @@ export const ThemeToggle = styled.button`
 `
 export const CustomPopup = styled.div`
   padding: 2rem;
-  background-color: #cbd5e1;
+  background-color: ${props => (props.isDarkTheme ? '#212121' : '#cbd5e1')};
   width: 275px;
   border-radius: 5px;
   text-align: center;
@@ -112,6 +114,7 @@ export const CustomPopup = styled.div`
 `
 export const PopupText = styled.p`
   margin-bottom: 1rem;
+  color: ${props => (props.isDarkTheme ? '#f9f9f9' : '#000')};
 `
 export const PopupButtons = styled.div`
   width: 100%;
@@ -128,8 +131,8 @@ export const PopupButton = styled.button`
 `
 export const CancelButton = styled(PopupButton)`
   background: transparent;
-  color: #444;
-  border-color: #444;
+  color: ${props => (props.isDarkTheme ? '#f9f9f9' : '#444')};
+  border-color: ${props => (props.isDarkTheme ? '#f9f9f9' : '#444')};
 `
 export const ConfirmButton = styled(PopupButton)`
   background: #3b82f6;

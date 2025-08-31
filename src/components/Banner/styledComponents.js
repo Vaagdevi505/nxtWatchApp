@@ -39,6 +39,7 @@ export const BannerContent = styled.div`
 export const BannerText = styled.p`
   font-size: 20px;
   font-weight: 400;
+  color:#111;
 `
 export const BannerFooter = styled.div`
   margin-bottom: 1rem;

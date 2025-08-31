@@ -70,6 +70,7 @@ class GamingVideos extends Component {
 
   renderSuccessView = () => {
     const {videos} = this.state
+
     if (videos.length === 0) {
       return (
         <FailureView>
@@ -85,26 +86,36 @@ class GamingVideos extends Component {
         </FailureView>
       )
     }
+
     return (
-      <GameVideosList>
-        {videos.map(video => (
-          <GameVideo key={video.id}>
-            <Link to={`/videos/${video.id}`}>
-              <GameVideoCard>
-                <GameVideoThumbnail>
-                  <img src={video.thumbnailUrl} alt="video thumbnail" />
-                </GameVideoThumbnail>
-                <GameVideoDetails>
-                  <GameVideoName>{video.title}</GameVideoName>
-                  <GameVideoViews>
-                    {video.viewCount} Watching WorldWide
-                  </GameVideoViews>
-                </GameVideoDetails>
-              </GameVideoCard>
-            </Link>
-          </GameVideo>
-        ))}
-      </GameVideosList>
+      <ThemeContext.Consumer>
+        {value => {
+          const {isDarkTheme} = value
+          return (
+            <GameVideosList>
+              {videos.map(video => (
+                <GameVideo key={video.id}>
+                  <Link to={`/videos/${video.id}`}>
+                    <GameVideoCard>
+                      <GameVideoThumbnail>
+                        <img src={video.thumbnailUrl} alt="video thumbnail" />
+                      </GameVideoThumbnail>
+                      <GameVideoDetails>
+                        <GameVideoName isDarkTheme={isDarkTheme}>
+                          {video.title}
+                        </GameVideoName>
+                        <GameVideoViews isDarkTheme={isDarkTheme}>
+                          {video.viewCount} Watching WorldWide
+                        </GameVideoViews>
+                      </GameVideoDetails>
+                    </GameVideoCard>
+                  </Link>
+                </GameVideo>
+              ))}
+            </GameVideosList>
+          )
+        }}
+      </ThemeContext.Consumer>
     )
   }
 

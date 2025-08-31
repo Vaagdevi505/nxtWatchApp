@@ -35,13 +35,13 @@ export const GameVideoName = styled.p`
   font-size: 16px;
   font-weight: 400;
   margin: 10px 0;
-  color: #333;
+  color: ${props => (props.isDarkTheme ? '#ffffff' : '#333')};
 `
 export const GameVideoViews = styled.p`
   display: flex;
   gap: 12px;
   font-size: 13px;
-  color: #666;
+  color: ${props => (props.isDarkTheme ? '#909090' : '#666')};
 `
 export const FailureView = styled.div`
   min-height: 100vh;
@@ -70,6 +70,8 @@ export const FailureView = styled.div`
 export const FailureViewTitle = styled.h1`
   font-size: 1.2rem;
   margin: 10px 0;
+  color: ${props => (props.isDarkTheme ? '#ffffff' : '#1e293b')};
+
 
   @media screen and (max-width: 768px) {
     font-size: 1rem;
@@ -78,6 +80,7 @@ export const FailureViewTitle = styled.h1`
 export const FailureViewText = styled.p`
   font-size: 1rem;
   margin-bottom: 15px;
+  color: ${props => (props.isDarkTheme ? '#e2e8f0' : '#475569')};
 
   @media screen and (max-width: 768px) {
     font-size: 0.9rem;

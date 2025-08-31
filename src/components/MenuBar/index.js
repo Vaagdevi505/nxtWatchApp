@@ -3,6 +3,8 @@ import {AiFillHome} from 'react-icons/ai'
 import {HiFire} from 'react-icons/hi'
 import {SiYoutubegaming} from 'react-icons/si'
 import {MdPlaylistAdd} from 'react-icons/md'
+import ThemeContext from '../../context/ThemeContext'
+
 
 import {
   ContactUs,
@@ -17,8 +19,12 @@ import {
 } from './styledComponents'
 
 const MenuBar = () => (
-  <MenuBarContainer>
-    <MenuItems>
+  <ThemeContext.Consumer>
+  {value => {
+    const {isDarkTheme} = value
+    return (
+      <MenuBarContainer isDarkTheme={isDarkTheme}>
+        <MenuItems>
       <MenuItem>
         <NavLink
           exact
@@ -26,10 +32,8 @@ const MenuBar = () => (
           className="menu-link"
           activeClassName="active-menu-link"
         >
-          <button type="button">
-            <AiFillHome size={27} />
-            <MenuItemText>Home</MenuItemText>
-          </button>
+          <AiFillHome size={27} />
+          <MenuItemText>Home</MenuItemText>
         </NavLink>
       </MenuItem>
       <MenuItem>
@@ -38,10 +42,8 @@ const MenuBar = () => (
           className="menu-link"
           activeClassName="active-menu-link"
         >
-          <button type="button">
-            <HiFire size={27} />
-            <MenuItemText>Trending</MenuItemText>
-          </button>
+          <HiFire size={27} />
+          <MenuItemText>Trending</MenuItemText>
         </NavLink>
       </MenuItem>
       <MenuItem>
@@ -50,10 +52,8 @@ const MenuBar = () => (
           className="menu-link"
           activeClassName="active-menu-link"
         >
-          <button type="button">
-            <SiYoutubegaming size={27} />
-            <MenuItemText>Gaming</MenuItemText>
-          </button>
+          <SiYoutubegaming size={27} />
+          <MenuItemText>Gaming</MenuItemText>
         </NavLink>
       </MenuItem>
       <MenuItem>
@@ -62,16 +62,14 @@ const MenuBar = () => (
           className="menu-link"
           activeClassName="active-menu-link"
         >
-          <button type="button">
-            <MdPlaylistAdd size={30} />
-            <MenuItemText>Saved Videos</MenuItemText>
-          </button>
+          <MdPlaylistAdd size={30} />
+          <MenuItemText>Saved Videos</MenuItemText>
         </NavLink>
       </MenuItem>
     </MenuItems>
 
     <ContactUs>
-      <ContactUsTitle>Contact Us</ContactUsTitle>
+      <ContactUsTitle isDarkTheme={isDarkTheme}>Contact Us</ContactUsTitle>
       <ContactUsLinks>
         <ContactUsLink>
           <img
@@ -92,11 +90,14 @@ const MenuBar = () => (
           />
         </ContactUsLink>
       </ContactUsLinks>
-      <ContactUsText>
+      <ContactUsText isDarkTheme={isDarkTheme}>
         Enjoy! Now to see your channels and recommendations!
       </ContactUsText>
     </ContactUs>
-  </MenuBarContainer>
+      </MenuBarContainer>
+    )
+  }}
+</ThemeContext.Consumer>
 )
 
 export default MenuBar

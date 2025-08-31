@@ -1,14 +1,16 @@
 import styled from 'styled-components'
 
-export const HomeVideoLink = styled.a`
-  text-decoration: none;
-`
 export const HomeVideosList = styled.ul`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
   gap: 25px;
   padding: 0 10px;
   list-style: none;
+`
+export const HomeVideo = styled.li`
+ a {
+    text-decoration: none;
+  }
 `
 export const HomeVideoCard = styled.div`
   border-radius: 3px;
@@ -47,11 +49,11 @@ export const HomeVideoName = styled.p`
   font-size: 16px;
   font-weight: 400;
   margin: 10px 0;
-  color: #333;
+  color: ${props => (props.isDarkTheme ? '#ffffff' : '#333')};
 `
 export const HomeVideoChannelName = styled.p`
   font-size: 14px;
-  color: #555;
+  color: ${props => (props.isDarkTheme ? '#909090' : '#555')};
   margin: 10px 0;
 `
 export const HomeVideoStats = styled.div`
@@ -87,6 +89,8 @@ export const FailureView = styled.div`
 export const FailureViewTitle = styled.h1`
   font-size: 1.2rem;
   margin: 10px 0;
+  color: ${props => (props.isDarkTheme ? '#ffffff' : '#1e293b')};
+
   @media screen and (max-width: 768px) {
     font-size: 1rem;
   }
@@ -94,6 +98,8 @@ export const FailureViewTitle = styled.h1`
 export const FailureViewText = styled.p`
   font-size: 1rem;
   margin-bottom: 15px;
+  color: ${props => (props.isDarkTheme ? '#e2e8f0' : '#475569')};
+
 
   @media screen and (max-width: 768px) {
     font-size: 0.9rem;

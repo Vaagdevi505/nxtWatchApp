@@ -28,12 +28,12 @@ class NavBar extends Component {
   handleConfirmLogout = () => {
     const {history} = this.props
     Cookies.remove('jwt_token')
-    this.setState({loggedOut: true, showPopup: false})
+    this.setState({loggedOut: true})
     history.replace('/login')
   }
 
   render() {
-    const {loggedOut, showPopup} = this.state
+    const {loggedOut} = this.state
     const jwtToken = Cookies.get('jwt_token')
 
     if (!jwtToken || loggedOut) {
@@ -49,13 +49,12 @@ class NavBar extends Component {
             toggleTheme()
           }
 
-          const themeClass = isDarkTheme ? 'dark-theme-nav' : 'light-theme-nav'
           const logoUrl = isDarkTheme
             ? 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-dark-theme-img.png'
             : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
 
           return (
-            <NavbarContainer className={themeClass}>
+            <NavbarContainer isDarkTheme={isDarkTheme}>
               <Link to="/">
                 <NavLogoContainer>
                   <NavbarLogo src={logoUrl} alt="website logo" />
@@ -81,7 +80,7 @@ class NavBar extends Component {
                     alt="profile"
                   />
                 </NavItem>
-                <NavItem>
+                <NavItem isDarkTheme={isDarkTheme}>
                   <Popup
                     trigger={
                       <button type="button" className="logout-btn">
@@ -95,10 +94,16 @@ class NavBar extends Component {
                     nested
                   >
                     {close => (
-                      <CustomPopup>
-                        <PopupText>Are you sure, you want to logout</PopupText>
+                      <CustomPopup isDarkTheme={isDarkTheme}>
+                        <PopupText isDarkTheme={isDarkTheme}>
+                          Are you sure, you want to logout
+                        </PopupText>
                         <PopupButtons>
-                          <CancelButton type="button" onClick={close}>
+                          <CancelButton
+                            type="button"
+                            onClick={close}
+                            isDarkTheme={isDarkTheme}
+                          >
                             Cancel
                           </CancelButton>
                           <ConfirmButton
@@ -116,7 +121,6 @@ class NavBar extends Component {
                   </Popup>
                 </NavItem>
               </NavItemsContainer>
-              {showPopup && <div className="popup-overlay"> </div>}
             </NavbarContainer>
           )
         }}

@@ -1,3 +1,5 @@
+// src/components/SavedVideos/styledComponents.js
+
 import styled from 'styled-components'
 
 export const SavedVideosBanner = styled.div`
@@ -5,21 +7,17 @@ export const SavedVideosBanner = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
+  /* margin-top: 60px;  <-- REMOVE THIS LINE */
 `
-export const VideoLink = styled.a`
-  text-decoration: none;
-  color: #222;
-`
+
 export const SavedVideosBannerTitle = styled.h1`
   margin-left: 10px;
-  color: #222;
+  color: ${props => (props.isDarkTheme ? '#ffffff' : '#222')};
   font-size: 25px;
   font-weight: 600;
 `
 export const SavedVideosContainer = styled.div`
-  @media screen and (min-width: 768px) {
-    margin-top: 60px;
-  }
+  /* No special margin needed here anymore */
 `
 export const SavedVideosList = styled.ul`
   display: grid;
@@ -27,6 +25,10 @@ export const SavedVideosList = styled.ul`
   gap: 25px;
   padding: 0 10px;
   list-style: none;
+
+  a {
+    text-decoration: none;
+  }
 
   @media screen and (min-width: 768px) {
     grid-template-columns: 1fr;
@@ -69,13 +71,38 @@ export const SavedVideoDetails = styled.div`
     margin: 15px 0 10px 20px;
   }
 `
+export const SavedVideoTitle = styled.p`
+  color: ${props => (props.isDarkTheme ? '#ffffff' : '#1e293b')};
+`
+export const SavedVideoChannelName = styled.p`
+  color: ${props => (props.isDarkTheme ? '#909090' : '#555')};
+`
+
 export const SavedVideoStats = styled.div`
   display: flex;
   gap: 20px;
   color: #777;
 `
+export const NoSavedVideosView = styled.div`
+  min-height:70vh;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
+  padding: 2rem;
+`
+export const NoSavedVideosImage = styled.img`
+  width: 80%;
+  max-width: 350px;
+  margin-bottom: 1rem;
+`
 export const NoSavedVideosTitle = styled.h1`
   font-size: 1.5rem;
   font-weight: 600;
   margin: 10px 0;
+  color: ${props => (props.isDarkTheme ? '#ffffff' : '#1e293b')};
+`
+export const NoSavedVideosText = styled.p`
+  color: ${props => (props.isDarkTheme ? '#e2e8f0' : '#616e7c')};
 `

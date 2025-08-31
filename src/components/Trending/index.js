@@ -2,6 +2,7 @@ import {HiFire} from 'react-icons/hi'
 import TrendingVideos from '../TrendingVideos'
 import MenuBar from '../MenuBar'
 import NavBar from '../NavBar'
+import ThemeContext from '../../context/ThemeContext'
 
 import {
   MainContent,
@@ -10,16 +11,25 @@ import {
 } from './styledComponents'
 
 const Trending = () => (
-  <>
-    <NavBar />
-    <MenuBar />
-    <MainContent>
-      <TrendingBanner>
-        <HiFire size={37} color="red" />
-        <TrendingBannerTitle>Trending</TrendingBannerTitle>
-      </TrendingBanner>
-      <TrendingVideos />
-    </MainContent>
-  </>
+  <ThemeContext.Consumer>
+    {value => {
+      const {isDarkTheme} = value
+      return (
+        <>
+          <NavBar />
+          <MenuBar />
+          <MainContent>
+            <TrendingBanner>
+              <HiFire size={37} color="red" />
+              <TrendingBannerTitle isDarkTheme={isDarkTheme}>
+                Trending
+              </TrendingBannerTitle>
+            </TrendingBanner>
+            <TrendingVideos />
+          </MainContent>
+        </>
+      )
+    }}
+  </ThemeContext.Consumer>
 )
 export default Trending

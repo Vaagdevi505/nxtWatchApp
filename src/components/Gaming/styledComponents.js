@@ -24,7 +24,7 @@ export const GamingBanner = styled.div`
 `
 export const GamingBannerTitle = styled.span`
   margin-left: 10px;
-  color: #222;
+  color: ${props => (props.isDarkTheme ? '#ffffff' : '#1e293b')};
   font-size: 25px;
   font-weight: 600;
 `

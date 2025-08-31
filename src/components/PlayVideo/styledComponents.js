@@ -29,6 +29,7 @@ export const VideoItemTitle = styled.p`
   font-size: 20px;
   font-weight: 500;
   margin-top: 10px;
+  color: ${props => (props.isDarkTheme ? '#ffffff' : '#1e293b')};
   @media (max-width: 768px) {
     font-size: 18px;
   }
@@ -52,7 +53,7 @@ export const VideoItemStats = styled.div`
   p {
     margin: 0;
     font-size: 14px;
-    color: #555;
+    color: ${props => (props.isDarkTheme ? '#ffffff' : '#555')};
   }
 `
 export const VideoItemSocial = styled.div`
@@ -99,14 +100,16 @@ export const VideoItemChannelDetails = styled.div`
 export const VideoItemChannelName = styled.p`
   font-weight: 600;
   font-size: 15px;
+  color: ${props => (props.isDarkTheme ? '#ffffff' : '#1e293b')};
 `
 export const VideoItemChannelSubscriber = styled.p`
   font-size: 13px;
-  color: gray;
+  color: ${props => (props.isDarkTheme ? '#ffffff' : 'gray')};
 `
 export const VideoItemChannelDescription = styled.p`
   font-size: 14px;
   line-height: 1.4;
+  color: ${props => (props.isDarkTheme ? '#e2e8f0' : '#475569')};
 `
 export const SocialButton = styled.button`
   border: none;
@@ -130,7 +133,7 @@ export const ActiveButton = styled.button`
   background: transparent;
 `
 export const NormalButton = styled.button`
-  color: #64748b;
+  color: ${props => (props.isDarkTheme ? '#ffffff' : '#64748b')};
   border: none;
   cursor: pointer;
   display: flex;
@@ -165,6 +168,7 @@ export const FailureView = styled.div`
 export const FailureViewTitle = styled.h1`
   font-size: 1.2rem;
   margin: 10px 0;
+  color: ${props => (props.isDarkTheme ? '#ffffff' : '#1e293b')};
   @media (max-width: 768px) {
     font-size: 1rem;
   }
@@ -172,6 +176,7 @@ export const FailureViewTitle = styled.h1`
 export const FailureViewText = styled.p`
   font-size: 1rem;
   margin-bottom: 15px;
+  color: ${props => (props.isDarkTheme ? '#e2e8f0' : '#475569')};
   @media (max-width: 768px) {
     font-size: 0.9rem;
   }

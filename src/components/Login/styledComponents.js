@@ -1,3 +1,5 @@
+// src/components/Login/styledComponents.js
+
 import styled from 'styled-components'
 
 export const LoginPageContainer = styled.div`
@@ -5,6 +7,7 @@ export const LoginPageContainer = styled.div`
   display: flex;
   justify-content: center;
   align-items: center;
+  background-color: ${props => (props.isDarkTheme ? '#212121' : '#f9f9f9')};
 `
 export const LoginFormContainer = styled.form`
   display: flex;
@@ -12,8 +15,9 @@ export const LoginFormContainer = styled.form`
   max-width: 450px;
   padding: 2rem 1rem;
   border-radius: 8px;
-  color: #5a697d;
-  box-shadow: rgb(244, 244, 244) 4px 4px 8px 8px;
+  background-color: ${props => (props.isDarkTheme ? '#0f0f0f' : '#ffffff')};
+  box-shadow: ${props =>
+    props.isDarkTheme ? 'none' : '0px 4px 16px 0px #bfbfbf'};
 `
 export const LoginImageContainer = styled.div`
   display: flex;
@@ -35,11 +39,13 @@ export const LoginFormLabel = styled.label`
   margin-bottom: 5px;
   text-transform: uppercase;
   font-weight: 600;
+  color: ${props => (props.isDarkTheme ? '#f9f9f9' : '#5a697d')};
 `
 export const LoginInput = styled.input`
   border-radius: 5px;
-  border: 1px solid #e5e5e5;
-  background-color: #ffffff;
+  border: 1px solid ${props => (props.isDarkTheme ? '#475569' : '#e5e5e5')};
+  background-color: ${props => (props.isDarkTheme ? 'transparent' : '#ffffff')};
+  color: ${props => (props.isDarkTheme ? '#f9f9f9' : '#000000')};
   padding: 10px;
   outline: none;
 
@@ -63,6 +69,7 @@ export const LoginShowPasswordContainer = styled.div`
 
   label {
     font-size: 13px;
+    color: ${props => (props.isDarkTheme ? '#f9f9f9' : '#5a697d')};
   }
 `
 export const LoginButtonContainer = styled.div`
@@ -89,10 +96,11 @@ export const LoginButton = styled.button`
 export const LoginText = styled.p`
   text-align: center;
   font-size: 13px;
+  color: ${props => (props.isDarkTheme ? '#f1f5f9' : '#231f20')};
 `
 export const LoginErrorMessage = styled.p`
   text-align: center;
-  color: red;
+  color: #ff0b37;
   font-size: 15px;
   margin: 10px 0;
 `

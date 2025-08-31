@@ -72,12 +72,13 @@ class TrendingVideos extends Component {
 
   renderSuccessView = () => {
     const {videos} = this.state
+
     if (videos.length === 0) {
       return (
         <FailureView>
           <img
             src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
-            alt="no-videos"
+            alt="no videos"
           />
           <FailureViewTitle>No search results found</FailureViewTitle>
           <FailureViewText>
@@ -89,35 +90,44 @@ class TrendingVideos extends Component {
     }
 
     return (
-      <TrendingVideosList>
-        {videos.map(video => (
-          <TrendingVideo key={video.id}>
-            <Link to={`/videos/${video.id}`}>
-              <TrendingVideoCard>
-                <TrendingVideoThumbnail>
-                  <img src={video.thumbnailUrl} alt="video thumbnail" />
-                </TrendingVideoThumbnail>
-                <TrendingVideoFooter>
-                  <img
-                    src={video.channel.profileImageUrl}
-                    alt="channel-profile"
-                  />
-                  <TrendingVideoDetails>
-                    <TrendingVideoName>{video.title}</TrendingVideoName>
-                    <TrendingVideoChannelName>
-                      {video.channel.name}
-                    </TrendingVideoChannelName>
-                    <TrendingVideoStats>
-                      <p>{video.viewCount} Views</p>
-                      <p>{video.publishedAt}</p>
-                    </TrendingVideoStats>
-                  </TrendingVideoDetails>
-                </TrendingVideoFooter>
-              </TrendingVideoCard>
-            </Link>
-          </TrendingVideo>
-        ))}
-      </TrendingVideosList>
+      <ThemeContext.Consumer>
+        {value => {
+          const {isDarkTheme} = value
+          return (
+            <TrendingVideosList>
+              {videos.map(video => (
+                <TrendingVideo key={video.id}>
+                  <Link to={`/videos/${video.id}`}>
+                    <TrendingVideoCard>
+                      <TrendingVideoThumbnail>
+                        <img src={video.thumbnailUrl} alt="video thumbnail" />
+                      </TrendingVideoThumbnail>
+                      <TrendingVideoFooter>
+                        <img
+                          src={video.channel.profileImageUrl}
+                          alt="channel-profile"
+                        />
+                        <TrendingVideoDetails>
+                          <TrendingVideoName isDarkTheme={isDarkTheme}>
+                            {video.title}
+                          </TrendingVideoName>
+                          <TrendingVideoChannelName isDarkTheme={isDarkTheme}>
+                            {video.channel.name}
+                          </TrendingVideoChannelName>
+                          <TrendingVideoStats>
+                            <p>{video.viewCount} Views</p>
+                            <p>{video.publishedAt}</p>
+                          </TrendingVideoStats>
+                        </TrendingVideoDetails>
+                      </TrendingVideoFooter>
+                    </TrendingVideoCard>
+                  </Link>
+                </TrendingVideo>
+              ))}
+            </TrendingVideosList>
+          )
+        }}
+      </ThemeContext.Consumer>
     )
   }
 

@@ -92,105 +92,123 @@ class PlayVideo extends Component {
     const {videoDetails} = this.state
 
     return (
-      <SavedVideosContext.Consumer>
-        {savedVideosValue => (
-          <VideoContext.Consumer>
-            {videoContextValue => {
-              const {addVideo, savedVideosList} = savedVideosValue
-              const {
-                likedVideos,
-                dislikedVideos,
-                addLikedVideo,
-                addDislikedVideo,
-              } = videoContextValue
+      <ThemeContext.Consumer>
+        {themeValue => {
+          const {isDarkTheme} = themeValue
+          return (
+            <SavedVideosContext.Consumer>
+              {savedVideosValue => (
+                <VideoContext.Consumer>
+                  {videoContextValue => {
+                    const {addVideo, savedVideosList} = savedVideosValue
+                    const {
+                      likedVideos,
+                      dislikedVideos,
+                      addLikedVideo,
+                      addDislikedVideo,
+                    } = videoContextValue
 
-              const isSaved = savedVideosList.some(
-                video => video.id === videoDetails.id,
-              )
-              const isLiked = likedVideos.some(
-                video => video.id === videoDetails.id,
-              )
-              const isDisliked = dislikedVideos.some(
-                video => video.id === videoDetails.id,
-              )
+                    const isSaved = savedVideosList.some(
+                      video => video.id === videoDetails.id,
+                    )
+                    const isLiked = likedVideos.some(
+                      video => video.id === videoDetails.id,
+                    )
+                    const isDisliked = dislikedVideos.some(
+                      video => video.id === videoDetails.id,
+                    )
 
-              const onSaveVideo = () => {
-                addVideo(videoDetails)
-              }
+                    const onSaveVideo = () => {
+                      addVideo(videoDetails)
+                    }
 
-              const onClickLike = () => {
-                if (isDisliked) {
-                  addDislikedVideo(videoDetails)
-                }
-                addLikedVideo(videoDetails)
-              }
+                    const onClickLike = () => {
+                      if (isDisliked) {
+                        addDislikedVideo(videoDetails)
+                      }
+                      addLikedVideo(videoDetails)
+                    }
 
-              const onClickDislike = () => {
-                if (isLiked) {
-                  addLikedVideo(videoDetails)
-                }
-                addDislikedVideo(videoDetails)
-              }
+                    const onClickDislike = () => {
+                      if (isLiked) {
+                        addLikedVideo(videoDetails)
+                      }
+                      addDislikedVideo(videoDetails)
+                    }
 
-              const LikeButton = isLiked ? ActiveButton : NormalButton
-              const DislikeButton = isDisliked ? ActiveButton : NormalButton
-              const SaveButton = isSaved ? ActiveButton : NormalButton
+                    const LikeButton = isLiked ? ActiveButton : NormalButton
+                    const DislikeButton = isDisliked
+                      ? ActiveButton
+                      : NormalButton
+                    const SaveButton = isSaved ? ActiveButton : NormalButton
 
-              return (
-                <VideoItemContainer>
-                  <VideoPlayContainer>
-                    <iframe
-                      src={videoDetails.videoUrl}
-                      title={videoDetails.title}
-                    />
-                  </VideoPlayContainer>
-                  <VideoItemTitle>{videoDetails.title}</VideoItemTitle>
-                  <VideoItemStatus>
-                    <VideoItemStats>
-                      <p>{videoDetails.viewCount} views </p>
-                      <p>{videoDetails.publishedAt}</p>
-                    </VideoItemStats>
-                    <VideoItemSocial>
-                      <LikeButton type="button" onClick={onClickLike}>
-                        <AiOutlineLike size={27} /> Like
-                      </LikeButton>
-                      <DislikeButton type="button" onClick={onClickDislike}>
-                        <AiOutlineDislike size={27} /> Dislike
-                      </DislikeButton>
-                      <SaveButton type="button" onClick={onSaveVideo}>
-                        {isSaved ? (
-                          <MdPlaylistAddCheck size={27} />
-                        ) : (
-                          <MdPlaylistAdd size={27} />
-                        )}
-                        {isSaved ? 'Saved' : 'Save'}
-                      </SaveButton>
-                    </VideoItemSocial>
-                  </VideoItemStatus>
-                  <hr />
-                  <VideoItemFooter>
-                    <VideoItemChannelImage
-                      src={videoDetails.channel.profileImageUrl}
-                      alt="channel profile"
-                    />
-                    <VideoItemChannelDetails>
-                      <VideoItemChannelName>
-                        {videoDetails.channel.name}
-                      </VideoItemChannelName>
-                      <VideoItemChannelSubscriber>
-                        {videoDetails.channel.subscriberCount} Subscribers
-                      </VideoItemChannelSubscriber>
-                      <VideoItemChannelDescription>
-                        {videoDetails.description}
-                      </VideoItemChannelDescription>
-                    </VideoItemChannelDetails>
-                  </VideoItemFooter>
-                </VideoItemContainer>
-              )
-            }}
-          </VideoContext.Consumer>
-        )}
-      </SavedVideosContext.Consumer>
+                    return (
+                      <VideoItemContainer>
+                        <VideoPlayContainer>
+                          <iframe
+                            src={videoDetails.videoUrl}
+                            title={videoDetails.title}
+                          />
+                        </VideoPlayContainer>
+                        <VideoItemTitle isDarkTheme={isDarkTheme}>
+                          {videoDetails.title}
+                        </VideoItemTitle>
+                        <VideoItemStatus>
+                          <VideoItemStats isDarkTheme={isDarkTheme}>
+                            <p>{videoDetails.viewCount} views </p>
+                            <p>{videoDetails.publishedAt}</p>
+                          </VideoItemStats>
+                          <VideoItemSocial>
+                            <LikeButton type="button" onClick={onClickLike}>
+                              <AiOutlineLike size={27} /> Like
+                            </LikeButton>
+                            <DislikeButton
+                              type="button"
+                              onClick={onClickDislike}
+                            >
+                              <AiOutlineDislike size={27} /> Dislike
+                            </DislikeButton>
+                            <SaveButton type="button" onClick={onSaveVideo}>
+                              {isSaved ? (
+                                <MdPlaylistAddCheck size={27} />
+                              ) : (
+                                <MdPlaylistAdd size={27} />
+                              )}
+                              {isSaved ? 'Saved' : 'Save'}
+                            </SaveButton>
+                          </VideoItemSocial>
+                        </VideoItemStatus>
+                        <hr />
+                        <VideoItemFooter>
+                          <VideoItemChannelImage
+                            src={videoDetails.channel.profileImageUrl}
+                            alt="channel profile"
+                          />
+                          <VideoItemChannelDetails>
+                            <VideoItemChannelName isDarkTheme={isDarkTheme}>
+                              {videoDetails.channel.name}
+                            </VideoItemChannelName>
+                            <VideoItemChannelSubscriber
+                              isDarkTheme={isDarkTheme}
+                            >
+                              {videoDetails.channel.subscriberCount} Subscribers
+                            </VideoItemChannelSubscriber>
+                            <VideoItemChannelDescription
+                              isDarkTheme={isDarkTheme}
+                            >
+                              {videoDetails.description}
+                            </VideoItemChannelDescription>
+                          </VideoItemChannelDetails>
+                        </VideoItemFooter>
+                      </VideoItemContainer>
+                    )
+                  }}
+                </VideoContext.Consumer>
+              )}
+            </SavedVideosContext.Consumer>
+          )
+        }}
+      </ThemeContext.Consumer>
     )
   }
 
