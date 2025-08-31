@@ -1,13 +1,14 @@
-.main-content {
+import styled from 'styled-components'
+
+export const MainContent = styled.div`
   padding: 1rem 0.5em;
   overflow-y: hidden;
-}
-@media screen and (min-width: 768px) {
-  .main-content {
+
+  @media screen and (min-width: 768px) {
     margin-left: 225px;
   }
-}
-.trending-banner {
+`
+export const GamingBanner = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
@@ -15,16 +16,15 @@
   margin-top: 50px;
   margin-bottom: 20px;
   margin-left: 20px;
-}
-@media screen and (max-width: 540px) {
-  .trending-banner {
+
+  @media screen and (max-width: 540px) {
     margin-bottom: 20px;
     margin-left: 10px;
   }
-}
-.trending-banner-title {
+`
+export const GamingBannerTitle = styled.span`
   margin-left: 10px;
   color: #222;
   font-size: 25px;
   font-weight: 600;
-}
+`

@@ -4,12 +4,22 @@ import {HiFire} from 'react-icons/hi'
 import {SiYoutubegaming} from 'react-icons/si'
 import {MdPlaylistAdd} from 'react-icons/md'
 
-import './index.css'
+import {
+  ContactUs,
+  ContactUsLink,
+  ContactUsLinks,
+  ContactUsText,
+  ContactUsTitle,
+  MenuBarContainer,
+  MenuItem,
+  MenuItems,
+  MenuItemText,
+} from './styledComponents'
 
 const MenuBar = () => (
-  <div className="menubar-container">
-    <ul className="menu-items">
-      <li className="menu-item">
+  <MenuBarContainer>
+    <MenuItems>
+      <MenuItem>
         <NavLink
           exact
           to="/"
@@ -18,11 +28,11 @@ const MenuBar = () => (
         >
           <button type="button">
             <AiFillHome size={27} />
-            <span className="menu-item-text">Home</span>
+            <MenuItemText>Home</MenuItemText>
           </button>
         </NavLink>
-      </li>
-      <li className="menu-item">
+      </MenuItem>
+      <MenuItem>
         <NavLink
           to="/trending"
           className="menu-link"
@@ -30,11 +40,11 @@ const MenuBar = () => (
         >
           <button type="button">
             <HiFire size={27} />
-            <span className="menu-item-text">Trending</span>
+            <MenuItemText>Trending</MenuItemText>
           </button>
         </NavLink>
-      </li>
-      <li className="menu-item">
+      </MenuItem>
+      <MenuItem>
         <NavLink
           to="/gaming"
           className="menu-link"
@@ -42,11 +52,11 @@ const MenuBar = () => (
         >
           <button type="button">
             <SiYoutubegaming size={27} />
-            <span className="menu-item-text">Gaming</span>
+            <MenuItemText>Gaming</MenuItemText>
           </button>
         </NavLink>
-      </li>
-      <li className="menu-item">
+      </MenuItem>
+      <MenuItem>
         <NavLink
           to="/saved-videos"
           className="menu-link"
@@ -54,39 +64,39 @@ const MenuBar = () => (
         >
           <button type="button">
             <MdPlaylistAdd size={30} />
-            <span className="menu-item-text">Saved Videos</span>
+            <MenuItemText>Saved Videos</MenuItemText>
           </button>
         </NavLink>
-      </li>
-    </ul>
+      </MenuItem>
+    </MenuItems>
 
-    <div className="contact-us">
-      <p className="contact-us-title">Contact Us</p>
-      <ul className="contact-us-links">
-        <li className="contact-us-link">
+    <ContactUs>
+      <ContactUsTitle>Contact Us</ContactUsTitle>
+      <ContactUsLinks>
+        <ContactUsLink>
           <img
             src="https://assets.ccbp.in/frontend/react-js/nxt-watch-facebook-logo-img.png"
             alt="facebook logo"
           />
-        </li>
-        <li className="contact-us-link">
+        </ContactUsLink>
+        <ContactUsLink>
           <img
             src="https://assets.ccbp.in/frontend/react-js/nxt-watch-twitter-logo-img.png"
             alt="twitter logo"
           />
-        </li>
-        <li className="contact-us-link">
+        </ContactUsLink>
+        <ContactUsLink>
           <img
             src="https://assets.ccbp.in/frontend/react-js/nxt-watch-linked-in-logo-img.png"
             alt="linked in logo"
           />
-        </li>
-      </ul>
-      <p className="contact-us-text">
+        </ContactUsLink>
+      </ContactUsLinks>
+      <ContactUsText>
         Enjoy! Now to see your channels and recommendations!
-      </p>
-    </div>
-  </div>
+      </ContactUsText>
+    </ContactUs>
+  </MenuBarContainer>
 )
 
 export default MenuBar

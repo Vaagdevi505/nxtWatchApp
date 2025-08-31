@@ -3,19 +3,19 @@ import GamingVideos from '../GamingVideos'
 import MenuBar from '../MenuBar'
 import NavBar from '../NavBar'
 
-import './index.css'
+import {GamingBanner, GamingBannerTitle, MainContent} from './styledComponents'
 
 const Gaming = () => (
   <>
     <NavBar />
     <MenuBar />
-    <div className="main-content">
-      <div className="gaming-banner">
+    <MainContent>
+      <GamingBanner>
         <SiYoutubegaming size={37} color="red" />
-        <span className="gaming-banner-title">Gaming</span>
-      </div>
+        <GamingBannerTitle>Gaming</GamingBannerTitle>
+      </GamingBanner>
       <GamingVideos />
-    </div>
+    </MainContent>
   </>
 )
 export default Gaming

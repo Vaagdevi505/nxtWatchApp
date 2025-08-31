@@ -3,7 +3,21 @@ import {Link} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
 import Cookies from 'js-cookie'
 import ThemeContext from '../../context/ThemeContext'
-import './index.css'
+import {
+  FailureView,
+  FailureViewRetryButton,
+  FailureViewText,
+  FailureViewTitle,
+  TrendingVideo,
+  TrendingVideoCard,
+  TrendingVideoChannelName,
+  TrendingVideoDetails,
+  TrendingVideoFooter,
+  TrendingVideoName,
+  TrendingVideosList,
+  TrendingVideoStats,
+  TrendingVideoThumbnail,
+} from './styledComponents'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -60,54 +74,50 @@ class TrendingVideos extends Component {
     const {videos} = this.state
     if (videos.length === 0) {
       return (
-        <div className="failure-view">
+        <FailureView>
           <img
             src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
             alt="no-videos"
           />
-          <h1 className="failure-view-title">No search results found</h1>
-          <p className="failure-view-text">
+          <FailureViewTitle>No search results found</FailureViewTitle>
+          <FailureViewText>
             Try different keywords or remove search filter
-          </p>
-          <button type="button" className="failure-view-retry-btn">
-            Retry
-          </button>
-        </div>
+          </FailureViewText>
+          <FailureViewRetryButton type="button">Retry</FailureViewRetryButton>
+        </FailureView>
       )
     }
 
     return (
-      <ul className="trending-videos-list">
+      <TrendingVideosList>
         {videos.map(video => (
-          <li key={video.id} className="trending-video">
+          <TrendingVideo key={video.id}>
             <Link to={`/videos/${video.id}`}>
-              <div className="trending-video-card">
-                <div className="trending-video-thumbnail">
+              <TrendingVideoCard>
+                <TrendingVideoThumbnail>
                   <img src={video.thumbnailUrl} alt="video thumbnail" />
-                </div>
-                <div className="trending-video-footer">
+                </TrendingVideoThumbnail>
+                <TrendingVideoFooter>
                   <img
                     src={video.channel.profileImageUrl}
                     alt="channel-profile"
                   />
-                  <div className="trending-video-details">
-                    <p className="trending-video-name">{video.title}</p>
-                    <p className="trending-video-channel-name">
+                  <TrendingVideoDetails>
+                    <TrendingVideoName>{video.title}</TrendingVideoName>
+                    <TrendingVideoChannelName>
                       {video.channel.name}
-                    </p>
-                    <div className="trending-video-stats">
-                      <p className="trending-video-views">
-                        {video.viewCount} Views
-                      </p>
-                      <p className="trending-video-date">{video.publishedAt}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                    </TrendingVideoChannelName>
+                    <TrendingVideoStats>
+                      <p>{video.viewCount} Views</p>
+                      <p>{video.publishedAt}</p>
+                    </TrendingVideoStats>
+                  </TrendingVideoDetails>
+                </TrendingVideoFooter>
+              </TrendingVideoCard>
             </Link>
-          </li>
+          </TrendingVideo>
         ))}
-      </ul>
+      </TrendingVideosList>
     )
   }
 
@@ -120,21 +130,20 @@ class TrendingVideos extends Component {
           : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
 
         return (
-          <div className="failure-view">
+          <FailureView>
             <img src={failureImageURL} alt="failure view" />
-            <h1 className="failure-view-title">Oops! Something Went Wrong</h1>
-            <p className="failure-view-text">
+            <FailureViewTitle>Oops! Something Went Wrong</FailureViewTitle>
+            <FailureViewText>
               We are having some trouble to complete your request. Please try
               again.
-            </p>
-            <button
+            </FailureViewText>
+            <FailureViewRetryButton
               type="button"
-              className="failure-view-retry-btn"
               onClick={this.getTrendingVideos}
             >
               Retry
-            </button>
-          </div>
+            </FailureViewRetryButton>
+          </FailureView>
         )
       }}
     </ThemeContext.Consumer>

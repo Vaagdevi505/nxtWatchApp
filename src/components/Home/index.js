@@ -5,7 +5,13 @@ import MenuBar from '../MenuBar'
 import Banner from '../Banner'
 import HomeVideos from '../HomeVideos'
 
-import './index.css'
+import {
+  MainContent,
+  NoBanner,
+  SearchBarContainer,
+  SearchIcon,
+  SearchInput,
+} from './styledComponents'
 
 class Home extends Component {
   state = {
@@ -38,32 +44,30 @@ class Home extends Component {
       <>
         <NavBar />
         <MenuBar />
-        <div data-testid="home" className="main-content">
+        <MainContent data-testid="home">
           <Banner
             visible={bannerVisible}
             handleCloseBanner={this.handleCloseBanner}
           />
-          <section className={`${!bannerVisible ? 'no-banner' : ''}`}>
-            <div className="search-bar-container">
-              <input
+          <NoBanner className={`${!bannerVisible ? 'no-banner' : ''}`}>
+            <SearchBarContainer>
+              <SearchInput
                 type="search"
-                className="search-input"
                 value={searchInput}
                 onChange={this.handleSearchInput}
                 placeholder="Search"
               />
-              <button
+              <SearchIcon
                 data-testid="searchButton"
                 type="button"
-                className="search-icon"
                 onClick={this.fetchVideos}
               >
                 <IoIosSearch size={20} />
-              </button>
-            </div>
+              </SearchIcon>
+            </SearchBarContainer>
             <HomeVideos apiSearchQuery={apiSearchQuery} />
-          </section>
-        </div>
+          </NoBanner>
+        </MainContent>
       </>
     )
   }

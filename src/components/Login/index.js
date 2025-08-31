@@ -2,7 +2,20 @@ import {Component} from 'react'
 import {Redirect} from 'react-router-dom'
 import Cookies from 'js-cookie'
 import ThemeContext from '../../context/ThemeContext'
-import './index.css'
+import {
+  LoginButton,
+  LoginButtonContainer,
+  LoginErrorMessage,
+  LoginFormContainer,
+  LoginFormLabel,
+  LoginImage,
+  LoginImageContainer,
+  LoginInput,
+  LoginInputContainer,
+  LoginPageContainer,
+  LoginShowPasswordContainer,
+  LoginText,
+} from './styledComponents'
 
 class Login extends Component {
   state = {
@@ -70,52 +83,43 @@ class Login extends Component {
             : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
 
           return (
-            <div className="login-page-container">
-              <form
-                className="login-form-container"
-                onSubmit={this.submitFormDetails}
-              >
-                <div className="login-image-container">
-                  <img
-                    src={logoUrl}
-                    alt="website logo"
-                    className="login-image"
-                  />
-                </div>
+            <LoginPageContainer>
+              <LoginFormContainer onSubmit={this.submitFormDetails}>
+                <LoginImageContainer>
+                  <LoginImage src={logoUrl} alt="website logo" />
+                </LoginImageContainer>
                 {showErrMsg && (
-                  <p className="login-error-message"> *{errMsg} </p>
+                  <LoginErrorMessage> *{errMsg} </LoginErrorMessage>
                 )}
-                <div className="login-input-container">
-                  <label htmlFor="login-username" className="login-form-label">
+                <LoginInputContainer>
+                  <LoginFormLabel htmlFor="login-username">
                     USERNAME
-                  </label>
-                  <input
+                  </LoginFormLabel>
+                  <LoginInput
                     type="text"
                     value={username}
-                    className="login-input"
                     name="login-username"
                     id="login-username"
                     placeholder="Username"
                     onChange={this.onChangeUserName}
                     required
                   />
-                </div>
-                <div className="login-input-container">
-                  <label htmlFor="login-password" className="login-form-label">
+                </LoginInputContainer>
+                <LoginInputContainer>
+                  <LoginFormLabel htmlFor="login-password">
                     PASSWORD
-                  </label>
-                  <input
+                  </LoginFormLabel>
+                  <LoginInput
                     type={showPassword ? 'text' : 'password'}
                     value={password}
                     name="login-password"
-                    className="login-input"
                     id="login-password"
                     placeholder="Password"
                     onChange={this.onChangePassword}
                     required
                   />
-                </div>
-                <div className="login-show-password-container">
+                </LoginInputContainer>
+                <LoginShowPasswordContainer>
                   <input
                     type="checkbox"
                     name="show-password"
@@ -124,17 +128,15 @@ class Login extends Component {
                     checked={showPassword}
                   />
                   <label htmlFor="show-password">Show Password</label>
-                </div>
-                <div className="login-btn-container">
-                  <button type="submit" className="login-btn">
-                    Login
-                  </button>
-                </div>
-                <p className="login-text">
+                </LoginShowPasswordContainer>
+                <LoginButtonContainer>
+                  <LoginButton type="submit">Login</LoginButton>
+                </LoginButtonContainer>
+                <LoginText>
                   Login and explore with pre-filled credentials
-                </p>
-              </form>
-            </div>
+                </LoginText>
+              </LoginFormContainer>
+            </LoginPageContainer>
           )
         }}
       </ThemeContext.Consumer>

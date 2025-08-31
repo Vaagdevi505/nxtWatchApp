@@ -1,18 +1,17 @@
-.main-content {
+import styled from 'styled-components'
+
+export const MainContent = styled.div`
   padding: 1rem 0.5em;
   overflow-y: hidden;
-}
-@media screen and (min-width: 768px) {
-  .main-content {
+
+  @media screen and (min-width: 768px) {
     margin-left: 225px;
   }
-}
-
-.no-banner {
+`
+export const NoBanner = styled.section`
   margin-top: 70px;
-}
-
-.search-bar-container {
+`
+export const SearchBarContainer = styled.div`
   display: flex;
   margin: 1.5rem 0;
   border: 1px solid rgb(144, 144, 144);
@@ -20,25 +19,24 @@
   border-radius: 3px;
   width: 90%;
   height: 40px;
-}
-@media screen and (min-width: 768px) {
-  .search-bar-container {
+
+  @media screen and (min-width: 768px) {
     width: 40%;
     justify-self: flex-start;
   }
-}
-.search-input {
+`
+export const SearchInput = styled.input`
   background: none;
   width: 100%;
   outline: none;
   padding: 5px;
   border: none;
   color: rgb(35, 31, 32);
-}
-.search-icon {
+`
+export const SearchIcon = styled.button`
   background-color: rgb(144, 144, 144);
   width: 70px;
   cursor: pointer;
   padding: 5px;
   border: none;
-}
+`

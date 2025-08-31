@@ -6,7 +6,27 @@ import Cookies from 'js-cookie'
 import SavedVideosContext from '../../context/savedVideosContext'
 import VideoContext from '../../context/VideoContext'
 import ThemeContext from '../../context/ThemeContext'
-import './index.css'
+import {
+  ActiveButton,
+  FailureView,
+  FailureViewRetryButton,
+  FailureViewText,
+  FailureViewTitle,
+  NormalButton,
+  VideoContent,
+  VideoItemChannelDescription,
+  VideoItemChannelDetails,
+  VideoItemChannelImage,
+  VideoItemChannelName,
+  VideoItemChannelSubscriber,
+  VideoItemContainer,
+  VideoItemFooter,
+  VideoItemSocial,
+  VideoItemStats,
+  VideoItemStatus,
+  VideoItemTitle,
+  VideoPlayContainer,
+} from './styledComponents'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -112,79 +132,60 @@ class PlayVideo extends Component {
                 addDislikedVideo(videoDetails)
               }
 
-              const likeClassName = isLiked ? 'active-btn' : 'normal-btn'
-              const dislikeClassName = isDisliked ? 'active-btn' : 'normal-btn'
-              const saveClassName = isSaved ? 'active-btn' : 'normal-btn'
+              const LikeButton = isLiked ? ActiveButton : NormalButton
+              const DislikeButton = isDisliked ? ActiveButton : NormalButton
+              const SaveButton = isSaved ? ActiveButton : NormalButton
 
               return (
-                <div className="video-item-container">
-                  <div className="video-item-header">
-                    <div className="video-play-container">
-                      <iframe
-                        src={videoDetails.videoUrl}
-                        title={videoDetails.title}
-                      />
-                    </div>
-                    <p className="video-item-title">{videoDetails.title}</p>
-                    <div className="video-item-status">
-                      <div className="video-item-stats">
-                        <p>{videoDetails.viewCount} views </p>
-                        <p>{videoDetails.publishedAt}</p>
-                      </div>
-                      <div className="video-item-fuction">
-                        <div className="video-item-social">
-                          <button
-                            type="button"
-                            className={likeClassName}
-                            onClick={onClickLike}
-                          >
-                            <AiOutlineLike size={27} /> Like
-                          </button>
-                          <button
-                            type="button"
-                            className={dislikeClassName}
-                            onClick={onClickDislike}
-                          >
-                            <AiOutlineDislike size={27} /> Dislike
-                          </button>
-                          <button
-                            type="button"
-                            className={saveClassName}
-                            onClick={onSaveVideo}
-                          >
-                            {isSaved ? (
-                              <MdPlaylistAddCheck size={27} />
-                            ) : (
-                              <MdPlaylistAdd size={27} />
-                            )}
-                            {isSaved ? 'Saved' : 'Save'}
-                          </button>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
+                <VideoItemContainer>
+                  <VideoPlayContainer>
+                    <iframe
+                      src={videoDetails.videoUrl}
+                      title={videoDetails.title}
+                    />
+                  </VideoPlayContainer>
+                  <VideoItemTitle>{videoDetails.title}</VideoItemTitle>
+                  <VideoItemStatus>
+                    <VideoItemStats>
+                      <p>{videoDetails.viewCount} views </p>
+                      <p>{videoDetails.publishedAt}</p>
+                    </VideoItemStats>
+                    <VideoItemSocial>
+                      <LikeButton type="button" onClick={onClickLike}>
+                        <AiOutlineLike size={27} /> Like
+                      </LikeButton>
+                      <DislikeButton type="button" onClick={onClickDislike}>
+                        <AiOutlineDislike size={27} /> Dislike
+                      </DislikeButton>
+                      <SaveButton type="button" onClick={onSaveVideo}>
+                        {isSaved ? (
+                          <MdPlaylistAddCheck size={27} />
+                        ) : (
+                          <MdPlaylistAdd size={27} />
+                        )}
+                        {isSaved ? 'Saved' : 'Save'}
+                      </SaveButton>
+                    </VideoItemSocial>
+                  </VideoItemStatus>
                   <hr />
-                  <div className="video-item-footer">
-                    <div className="video-item-channel">
-                      <img
-                        className="video-item-channel-img"
-                        src={videoDetails.channel.profileImageUrl}
-                        alt="channel profile"
-                      />
-                    </div>
-                    <div className="video-item-channel-details">
-                      <p className="video-item-channel-name">
+                  <VideoItemFooter>
+                    <VideoItemChannelImage
+                      src={videoDetails.channel.profileImageUrl}
+                      alt="channel profile"
+                    />
+                    <VideoItemChannelDetails>
+                      <VideoItemChannelName>
                         {videoDetails.channel.name}
-                      </p>
-                      <p className="video-item-channel-subscriber">
+                      </VideoItemChannelName>
+                      <VideoItemChannelSubscriber>
                         {videoDetails.channel.subscriberCount} Subscribers
-                      </p>
-                      <p className="vide-item-channel-description">
+                      </VideoItemChannelSubscriber>
+                      <VideoItemChannelDescription>
                         {videoDetails.description}
-                      </p>
-                    </div>
-                  </div>
-                </div>
+                      </VideoItemChannelDescription>
+                    </VideoItemChannelDetails>
+                  </VideoItemFooter>
+                </VideoItemContainer>
               )
             }}
           </VideoContext.Consumer>
@@ -202,21 +203,20 @@ class PlayVideo extends Component {
           : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
 
         return (
-          <div className="failure-view">
+          <FailureView>
             <img src={failureImageURL} alt="failure view" />
-            <h1 className="failure-view-title">Oops! Something Went Wrong</h1>
-            <p className="failure-view-text">
+            <FailureViewTitle>Oops! Something Went Wrong</FailureViewTitle>
+            <FailureViewText>
               We are having some trouble to complete your request. Please try
               again.
-            </p>
-            <button
+            </FailureViewText>
+            <FailureViewRetryButton
               type="button"
-              className="failure-view-retry-btn"
               onClick={this.getCurrentVideo}
             >
               Retry
-            </button>
-          </div>
+            </FailureViewRetryButton>
+          </FailureView>
         )
       }}
     </ThemeContext.Consumer>
@@ -243,7 +243,7 @@ class PlayVideo extends Component {
   }
 
   render() {
-    return <div className="video-content">{this.getApiStatus()}</div>
+    return <VideoContent>{this.getApiStatus()}</VideoContent>
   }
 }
 export default PlayVideo

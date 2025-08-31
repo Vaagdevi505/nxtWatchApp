@@ -4,7 +4,19 @@ import {Link} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
 import ThemeContext from '../../context/ThemeContext'
 
-import './index.css'
+import {
+  FailureView,
+  FailureViewRetryButton,
+  FailureViewText,
+  FailureViewTitle,
+  GameVideo,
+  GameVideoCard,
+  GameVideoDetails,
+  GameVideoName,
+  GameVideosList,
+  GameVideoThumbnail,
+  GameVideoViews,
+} from './styledComponents'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -60,41 +72,39 @@ class GamingVideos extends Component {
     const {videos} = this.state
     if (videos.length === 0) {
       return (
-        <div className="failure-view">
+        <FailureView>
           <img
             src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
             alt="no-videos"
           />
-          <h1 className="failure-view-title">No search results found</h1>
-          <p className="failure-view-text">
+          <FailureViewTitle>No search results found</FailureViewTitle>
+          <FailureViewText>
             Try different keywords or remove search filter
-          </p>
-          <button type="button" className="failure-view-retry-btn">
-            Retry
-          </button>
-        </div>
+          </FailureViewText>
+          <FailureViewRetryButton type="button">Retry</FailureViewRetryButton>
+        </FailureView>
       )
     }
     return (
-      <ul className="game-videos-list">
+      <GameVideosList>
         {videos.map(video => (
-          <li key={video.id} className="game-video">
+          <GameVideo key={video.id}>
             <Link to={`/videos/${video.id}`}>
-              <div className="game-video-card">
-                <div className="game-video-thumbnail">
+              <GameVideoCard>
+                <GameVideoThumbnail>
                   <img src={video.thumbnailUrl} alt="video thumbnail" />
-                </div>
-                <div className="game-video-details">
-                  <p className="game-video-name">{video.title}</p>
-                  <p className="game-video-views">
+                </GameVideoThumbnail>
+                <GameVideoDetails>
+                  <GameVideoName>{video.title}</GameVideoName>
+                  <GameVideoViews>
                     {video.viewCount} Watching WorldWide
-                  </p>
-                </div>
-              </div>
+                  </GameVideoViews>
+                </GameVideoDetails>
+              </GameVideoCard>
             </Link>
-          </li>
+          </GameVideo>
         ))}
-      </ul>
+      </GameVideosList>
     )
   }
 
@@ -107,21 +117,17 @@ class GamingVideos extends Component {
           : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
 
         return (
-          <div className="failure-view">
+          <FailureView>
             <img src={failureImageURL} alt="failure view" />
-            <h1 className="failure-view-title">Oops! Something Went Wrong</h1>
-            <p className="failure-view-text">
+            <FailureViewTitle>Oops! Something Went Wrong</FailureViewTitle>
+            <FailureViewText>
               We are having some trouble to complete your request. Please try
               again.
-            </p>
-            <button
-              type="button"
-              className="failure-view-retry-btn"
-              onClick={this.getGames}
-            >
+            </FailureViewText>
+            <FailureViewRetryButton type="button" onClick={this.getGames}>
               Retry
-            </button>
-          </div>
+            </FailureViewRetryButton>
+          </FailureView>
         )
       }}
     </ThemeContext.Consumer>

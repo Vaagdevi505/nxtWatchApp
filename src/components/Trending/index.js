@@ -3,19 +3,23 @@ import TrendingVideos from '../TrendingVideos'
 import MenuBar from '../MenuBar'
 import NavBar from '../NavBar'
 
-import './index.css'
+import {
+  MainContent,
+  TrendingBanner,
+  TrendingBannerTitle,
+} from './styledComponents'
 
 const Trending = () => (
   <>
     <NavBar />
     <MenuBar />
-    <div className="main-content">
-      <div className="trending-banner">
+    <MainContent>
+      <TrendingBanner>
         <HiFire size={37} color="red" />
-        <span className="trending-banner-title">Trending</span>
-      </div>
+        <TrendingBannerTitle>Trending</TrendingBannerTitle>
+      </TrendingBanner>
       <TrendingVideos />
-    </div>
+    </MainContent>
   </>
 )
 export default Trending

@@ -3,7 +3,21 @@ import {Link} from 'react-router-dom'
 import Loader from 'react-loader-spinner'
 import Cookies from 'js-cookie'
 import ThemeContext from '../../context/ThemeContext'
-import './index.css'
+import {
+  FailureView,
+  FailureViewRetryButton,
+  FailureViewText,
+  FailureViewTitle,
+  HomeVideoCard,
+  HomeVideoChannelName,
+  HomeVideoDetails,
+  HomeVideoFooter,
+  HomeVideoLink,
+  HomeVideoName,
+  HomeVideosList,
+  HomeVideoStats,
+  HomeVideoThumbnail,
+} from './styledComponents'
 
 const apiStatusConstants = {
   initial: 'INITIAL',
@@ -69,54 +83,48 @@ class HomeVideos extends Component {
     const {videos} = this.state
     if (videos.length === 0) {
       return (
-        <div className="failure-view">
+        <FailureView>
           <img
             src="https://assets.ccbp.in/frontend/react-js/nxt-watch-no-search-results-img.png"
             alt="no videos"
           />
-          <h1 className="failure-view-title">No search results found</h1>
-          <p className="failure-view-text">
+          <FailureViewTitle>No search results found</FailureViewTitle>
+          <FailureViewText>
             Try different key words or remove search filter
-          </p>
-          <button
-            type="button"
-            className="failure-view-retry-btn"
-            onClick={this.getHomeVideos}
-          >
+          </FailureViewText>
+          <FailureViewRetryButton type="button" onClick={this.getHomeVideos}>
             Retry
-          </button>
-        </div>
+          </FailureViewRetryButton>
+        </FailureView>
       )
     }
     return (
-      <ul className="home-videos-list">
+      <HomeVideosList>
         {videos.map(video => (
-          <li key={video.id} className="home-video">
+          <li key={video.id}>
             <Link to={`/videos/${video.id}`}>
-              <div className="home-video-card">
-                <div className="home-video-thumbnail">
+              <HomeVideoCard>
+                <HomeVideoThumbnail>
                   <img src={video.thumbnailUrl} alt="video thumbnail" />
-                </div>
-                <div className="home-video-footer">
+                </HomeVideoThumbnail>
+                <HomeVideoFooter>
                   <img src={video.channel.profileImageUrl} alt="channel logo" />
-                  <div className="home-video-details">
-                    <p className="home-video-name">{video.title}</p>
-                    <p className="home-video-channel-name">
+                  <HomeVideoDetails>
+                    <HomeVideoName>{video.title}</HomeVideoName>
+                    <HomeVideoChannelName>
                       {video.channel.name}
-                    </p>
-                    <div className="home-video-stats">
-                      <p className="home-video-views">
-                        {video.viewCount} Views
-                      </p>
-                      <p className="home-video-date">{video.publishedAt}</p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+                    </HomeVideoChannelName>
+                    <HomeVideoStats>
+                      <p>{video.viewCount} Views</p>
+                      <p>{video.publishedAt}</p>
+                    </HomeVideoStats>
+                  </HomeVideoDetails>
+                </HomeVideoFooter>
+              </HomeVideoCard>
             </Link>
           </li>
         ))}
-      </ul>
+      </HomeVideosList>
     )
   }
 
@@ -129,21 +137,17 @@ class HomeVideos extends Component {
           : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-failure-view-light-theme-img.png'
 
         return (
-          <div className="failure-view">
+          <FailureView>
             <img src={failureImageURL} alt="failure view" />
-            <h1 className="failure-view-title">Oops! Something Went Wrong</h1>
-            <p className="failure-view-text">
+            <FailureViewTitle>Oops! Something Went Wrong</FailureViewTitle>
+            <FailureViewText>
               We are having some trouble to complete your request. Please try
               again.
-            </p>
-            <button
-              type="button"
-              className="failure-view-retry-btn"
-              onClick={this.getHomeVideos}
-            >
+            </FailureViewText>
+            <FailureViewRetryButton type="button" onClick={this.getHomeVideos}>
               Retry
-            </button>
-          </div>
+            </FailureViewRetryButton>
+          </FailureView>
         )
       }}
     </ThemeContext.Consumer>

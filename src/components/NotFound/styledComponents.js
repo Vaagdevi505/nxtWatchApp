@@ -1,4 +1,6 @@
-.not-found-view {
+import styled from 'styled-components'
+
+export const NotFoundView = styled.div`
   height: 90vh;
   display: flex;
   justify-content: center;
@@ -6,23 +8,22 @@
   align-items: center;
   gap: 1rem;
   text-align: center;
-}
-@media screen and (min-width: 768px) {
-  .not-found-image {
-    width: 400px !important;
-  }
-}
-.not-found-image {
+`
+export const NotFoundImage = styled.img`
   margin-top: 70px;
   width: 300px;
-}
-.not-found-title {
+
+  @media screen and (min-width: 768px) {
+    width: 400px !important;
+  }
+`
+export const NotFoundTitle = styled.h1`
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 10px;
   color: #111;
-}
-.not-found-text {
+`
+export const NotFoundText = styled.p`
   color: #444;
   font-size: 15px;
-}
+`

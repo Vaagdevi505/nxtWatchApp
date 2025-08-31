@@ -4,7 +4,17 @@ import NavBar from '../NavBar'
 import MenuBar from '../MenuBar'
 import savedVideosContext from '../../context/savedVideosContext'
 
-import './index.css'
+import {
+  NoSavedVideosTitle,
+  SavedVideoCard,
+  SavedVideoDetails,
+  SavedVideosBanner,
+  SavedVideosBannerTitle,
+  SavedVideosContainer,
+  SavedVideosList,
+  SavedVideoStats,
+  SavedVideoThumbnail,
+} from './styledComponents'
 
 const SavedVideos = ({isDarkTheme, toggleTheme}) => {
   const themeClass = isDarkTheme ? 'dark-theme' : 'light-theme'
@@ -21,47 +31,39 @@ const SavedVideos = ({isDarkTheme, toggleTheme}) => {
               alt="no saved videos"
               className="not-found-image"
             />
-            <h1 className="no-saved-videos-title">No saved videos found</h1>
-            <p className="no-saved-videos-text">
-              You can save your videos while watching them
-            </p>
+            <NoSavedVideosTitle>No saved videos found</NoSavedVideosTitle>
+            <p>You can save your videos while watching them</p>
           </div>
         )
 
         const renderSavedVideosView = () => (
-          <div className="saved-videos-container">
-            <div className="saved-videos-banner">
+          <SavedVideosContainer>
+            <SavedVideosBanner>
               <MdPlaylistAdd size={37} color="red" />
-              <h1 className="saved-videos-banner-title">Saved Videos</h1>
-            </div>
-            <ul className="saved-videos-list">
+              <SavedVideosBannerTitle>Saved Videos</SavedVideosBannerTitle>
+            </SavedVideosBanner>
+            <SavedVideosList>
               {savedVideosList.map(video => (
                 <Link to={`/videos/${video.id}`} className="video-link">
-                  <li key={video.id} className="saved-video">
-                    <div className="saved-video-card">
-                      <div className="saved-video-thumbnail">
+                  <li key={video.id}>
+                    <SavedVideoCard>
+                      <SavedVideoThumbnail>
                         <img src={video.thumbnailUrl} alt="video thumbnail" />
-                      </div>
-                      <div className="saved-video-details">
-                        <p className="saved-video-name">{video.title}</p>
-                        <p className="saved-video-channel-name">
-                          {video.channel.name}
-                        </p>
-                        <div className="saved-video-stats">
-                          <p className="saved-video-views">
-                            {video.viewCount} Views
-                          </p>
-                          <p className="saved-video-date">
-                            {video.publishedAt}
-                          </p>
-                        </div>
-                      </div>
-                    </div>
+                      </SavedVideoThumbnail>
+                      <SavedVideoDetails>
+                        <p>{video.title}</p>
+                        <p>{video.channel.name}</p>
+                        <SavedVideoStats>
+                          <p>{video.viewCount} Views</p>
+                          <p>{video.publishedAt}</p>
+                        </SavedVideoStats>
+                      </SavedVideoDetails>
+                    </SavedVideoCard>
                   </li>
                 </Link>
               ))}
-            </ul>
-          </div>
+            </SavedVideosList>
+          </SavedVideosContainer>
         )
 
         return (

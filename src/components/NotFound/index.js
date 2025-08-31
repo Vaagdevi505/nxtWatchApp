@@ -1,7 +1,12 @@
 import NavBar from '../NavBar'
 import MenuBar from '../MenuBar'
 import ThemeContext from '../../context/ThemeContext'
-import './index.css'
+import {
+  NotFoundImage,
+  NotFoundText,
+  NotFoundTitle,
+  NotFoundView,
+} from './styledComponents'
 
 const NotFound = () => (
   <ThemeContext.Consumer>
@@ -16,13 +21,13 @@ const NotFound = () => (
           <NavBar />
           <MenuBar />
           <div className="main-content">
-            <div className="not-found-view">
-              <img src={imageUrl} alt="not found" className="not-found-image" />
-              <h1 className="not-found-title">Page Not Found</h1>
-              <p className="not-found-text">
+            <NotFoundView>
+              <NotFoundImage src={imageUrl} alt="not found" />
+              <NotFoundTitle>Page Not Found</NotFoundTitle>
+              <NotFoundText>
                 we are sorry, the page you requested could not be found.
-              </p>
-            </div>
+              </NotFoundText>
+            </NotFoundView>
           </div>
         </>
       )

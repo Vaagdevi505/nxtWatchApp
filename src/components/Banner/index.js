@@ -1,38 +1,41 @@
 import {IoMdClose} from 'react-icons/io'
-import './index.css'
+import {
+  BannerButton,
+  BannerCloseButton,
+  BannerContainer,
+  BannerContent,
+  BannerFooter,
+  BannerHeader,
+  BannerImage,
+  BannerText,
+} from './styledComponents'
 
 const Banner = ({visible, handleCloseBanner}) => {
   if (!visible) {
     return null
   }
   return (
-    <div data-testid="banner" className="banner-container">
-      <div className="banner-header">
-        <img
+    <BannerContainer data-testid="banner">
+      <BannerHeader>
+        <BannerImage
           src="https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png"
           alt="nxt watch logo"
-          className="banner-img"
         />
-        <button
+        <BannerCloseButton
           type="button"
-          className="banner-close-btn"
           onClick={handleCloseBanner}
           data-testid="close"
         >
           <IoMdClose size={25} />
-        </button>
-      </div>
-      <div className="banner-content">
-        <p className="banner-text">
-          Buy Nxt Watch Premium prepaid plans with UPI
-        </p>
-      </div>
-      <div className="banner-footer">
-        <button type="button" className="banner-btn">
-          GET IT NOW
-        </button>
-      </div>
-    </div>
+        </BannerCloseButton>
+      </BannerHeader>
+      <BannerContent>
+        <BannerText>Buy Nxt Watch Premium prepaid plans with UPI</BannerText>
+      </BannerContent>
+      <BannerFooter>
+        <BannerButton type="button">GET IT NOW</BannerButton>
+      </BannerFooter>
+    </BannerContainer>
   )
 }
 

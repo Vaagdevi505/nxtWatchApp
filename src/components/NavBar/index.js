@@ -5,7 +5,22 @@ import Cookies from 'js-cookie'
 import {IoIosMoon, IoIosSunny} from 'react-icons/io'
 import {FiLogOut} from 'react-icons/fi'
 import ThemeContext from '../../context/ThemeContext'
-import './index.css'
+import {
+  CancelButton,
+  ConfirmButton,
+  CustomPopup,
+  LogoutIcon,
+  LogoutText,
+  NavbarContainer,
+  NavbarLogo,
+  NavItem,
+  NavItemsContainer,
+  NavLogoContainer,
+  PopupButtons,
+  PopupText,
+  ThemeToggle,
+  UserProfileImage,
+} from './styledComponents'
 
 class NavBar extends Component {
   state = {loggedOut: false}
@@ -40,21 +55,16 @@ class NavBar extends Component {
             : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
 
           return (
-            <div className={`navbar-container ${themeClass}`}>
+            <NavbarContainer className={themeClass}>
               <Link to="/">
-                <div className="nav-logo-container">
-                  <img
-                    src={logoUrl}
-                    alt="website logo"
-                    className="navbar-logo"
-                  />
-                </div>
+                <NavLogoContainer>
+                  <NavbarLogo src={logoUrl} alt="website logo" />
+                </NavLogoContainer>
               </Link>
-              <ul className="nav-items-container">
-                <li className="nav-item theme-toggle">
-                  <button
+              <NavItemsContainer>
+                <NavItem>
+                  <ThemeToggle
                     type="button"
-                    className="theme-toggle"
                     onClick={onToggleTheme}
                     data-testid="theme"
                   >
@@ -63,57 +73,51 @@ class NavBar extends Component {
                     ) : (
                       <IoIosMoon size={30} color="#222" />
                     )}
-                  </button>
-                </li>
-                <li className="nav-item">
-                  <img
+                  </ThemeToggle>
+                </NavItem>
+                <NavItem>
+                  <UserProfileImage
                     src="https://assets.ccbp.in/frontend/react-js/nxt-watch-profile-img.png"
                     alt="profile"
-                    className="user-profile-img"
                   />
-                </li>
-                <li className="nav-item">
+                </NavItem>
+                <NavItem>
                   <Popup
                     trigger={
                       <button type="button" className="logout-btn">
-                        <span className="logout-text">Logout</span>
-                        <FiLogOut size={27} className="logout-icon" />
+                        <LogoutText>Logout</LogoutText>
+                        <LogoutIcon>
+                          <FiLogOut size={27} />
+                        </LogoutIcon>
                       </button>
                     }
                     modal
                     nested
                   >
                     {close => (
-                      <div className="custom-popup">
-                        <p className="popup-text">
-                          Are you sure, you want to logout
-                        </p>
-                        <div className="popup-buttons">
-                          <button
-                            type="button"
-                            className="popup-btn cancel-btn"
-                            onClick={close}
-                          >
+                      <CustomPopup>
+                        <PopupText>Are you sure, you want to logout</PopupText>
+                        <PopupButtons>
+                          <CancelButton type="button" onClick={close}>
                             Cancel
-                          </button>
-                          <button
+                          </CancelButton>
+                          <ConfirmButton
                             type="button"
-                            className="popup-btn confirm-btn"
                             onClick={() => {
                               this.handleConfirmLogout()
                               close()
                             }}
                           >
                             Confirm
-                          </button>
-                        </div>
-                      </div>
+                          </ConfirmButton>
+                        </PopupButtons>
+                      </CustomPopup>
                     )}
                   </Popup>
-                </li>
-              </ul>
+                </NavItem>
+              </NavItemsContainer>
               {showPopup && <div className="popup-overlay"> </div>}
-            </div>
+            </NavbarContainer>
           )
         }}
       </ThemeContext.Consumer>

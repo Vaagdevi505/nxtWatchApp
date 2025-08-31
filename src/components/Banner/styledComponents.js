@@ -1,4 +1,6 @@
-.banner-container {
+import styled from 'styled-components'
+
+export const BannerContainer = styled.div`
   background-image: url('https://assets.ccbp.in/frontend/react-js/nxt-watch-banner-bg.png');
   background-position: center;
   background-repeat: no-repeat;
@@ -10,40 +12,38 @@
   gap: 2rem;
   margin-top: 50px;
   padding: 1rem;
-}
-.banner-header {
+`
+export const BannerHeader = styled.div`
   width: 100%;
   display: flex;
   justify-content: space-between;
   align-items: center;
-}
-.banner-img {
+`
+export const BannerImage = styled.img`
   width: 130px;
-}
-@media screen and (max-width: 480px) {
-  .banner-img {
+  @media screen and (max-width: 480px) {
     width: 110px;
   }
-}
-.banner-close-btn {
+`
+export const BannerCloseButton = styled.button`
   border: none;
   outline: none;
   cursor: pointer;
   background: transparent;
-}
-.banner-content {
+`
+export const BannerContent = styled.div`
   text-wrap: wrap;
   padding-right: 1rem;
   line-height: 1.2;
-}
-.banner-text {
+`
+export const BannerText = styled.p`
   font-size: 20px;
   font-weight: 400;
-}
-.banner-footer {
+`
+export const BannerFooter = styled.div`
   margin-bottom: 1rem;
-}
-.banner-btn {
+`
+export const BannerButton = styled.button`
   padding: 5px 10px;
   background: transparent;
   border: 1px solid #222;
@@ -51,4 +51,4 @@
   text-transform: uppercase;
   font-weight: 600;
   cursor: pointer;
-}
+`
