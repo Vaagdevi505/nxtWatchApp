@@ -5,7 +5,6 @@
   transition: all 0.3s ease-in;
 }
 
-
 body,
 #root {
   font-family: 'Roboto', sans-serif;
@@ -18,15 +17,14 @@ body,
   align-items: center;
 }
 
-
 .main-content {
-  padding-top: 75px; 
+  padding-top: 75px;
   padding-bottom: 75px;
 }
 
 @media screen and (min-width: 768px) {
   .main-content {
-    margin-left: 225px; 
+    margin-left: 225px;
     padding-bottom: 20px;
   }
 }

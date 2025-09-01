@@ -182,7 +182,7 @@ class PlayVideo extends Component {
                         <VideoItemFooter>
                           <VideoItemChannelImage
                             src={videoDetails.channel.profileImageUrl}
-                            alt="channel profile"
+                            alt="channel logo"
                           />
                           <VideoItemChannelDetails>
                             <VideoItemChannelName isDarkTheme={isDarkTheme}>

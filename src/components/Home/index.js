@@ -4,6 +4,7 @@ import NavBar from '../NavBar'
 import MenuBar from '../MenuBar'
 import Banner from '../Banner'
 import HomeVideos from '../HomeVideos'
+import ThemeContext from '../../context/ThemeContext'
 
 import {
   MainContent,
@@ -41,34 +42,42 @@ class Home extends Component {
     const {bannerVisible, searchInput, apiSearchQuery} = this.state
 
     return (
-      <>
-        <NavBar />
-        <MenuBar />
-        <MainContent data-testid="home">
-          <Banner
-            visible={bannerVisible}
-            handleCloseBanner={this.handleCloseBanner}
-          />
-          <NoBanner className={`${!bannerVisible ? 'no-banner' : ''}`}>
-            <SearchBarContainer>
-              <SearchInput
-                type="search"
-                value={searchInput}
-                onChange={this.handleSearchInput}
-                placeholder="Search"
-              />
-              <SearchIcon
-                data-testid="searchButton"
-                type="button"
-                onClick={this.fetchVideos}
-              >
-                <IoIosSearch size={20} />
-              </SearchIcon>
-            </SearchBarContainer>
-            <HomeVideos apiSearchQuery={apiSearchQuery} />
-          </NoBanner>
-        </MainContent>
-      </>
+      <ThemeContext.Consumer>
+        {value => {
+          const {isDarkTheme} = value
+
+          return (
+            <>
+              <NavBar />
+              <MenuBar />
+              <MainContent data-testid="home" isDarkTheme={isDarkTheme}>
+                <Banner
+                  visible={bannerVisible}
+                  handleCloseBanner={this.handleCloseBanner}
+                />
+                <NoBanner className={`${!bannerVisible ? 'no-banner' : ''}`}>
+                  <SearchBarContainer>
+                    <SearchInput
+                      type="search"
+                      value={searchInput}
+                      onChange={this.handleSearchInput}
+                      placeholder="Search"
+                    />
+                    <SearchIcon
+                      data-testid="searchButton"
+                      type="button"
+                      onClick={this.fetchVideos}
+                    >
+                      <IoIosSearch size={20} />
+                    </SearchIcon>
+                  </SearchBarContainer>
+                  <HomeVideos apiSearchQuery={apiSearchQuery} />
+                </NoBanner>
+              </MainContent>
+            </>
+          )
+        }}
+      </ThemeContext.Consumer>
     )
   }
 }

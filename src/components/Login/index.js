@@ -83,8 +83,11 @@ class Login extends Component {
             : 'https://assets.ccbp.in/frontend/react-js/nxt-watch-logo-light-theme-img.png'
 
           return (
-            <LoginPageContainer>
-              <LoginFormContainer onSubmit={this.submitFormDetails}>
+            <LoginPageContainer isDarkTheme={isDarkTheme}>
+              <LoginFormContainer
+                onSubmit={this.submitFormDetails}
+                isDarkTheme={isDarkTheme}
+              >
                 <LoginImageContainer>
                   <LoginImage src={logoUrl} alt="website logo" />
                 </LoginImageContainer>
@@ -92,7 +95,10 @@ class Login extends Component {
                   <LoginErrorMessage> *{errMsg} </LoginErrorMessage>
                 )}
                 <LoginInputContainer>
-                  <LoginFormLabel htmlFor="login-username">
+                  <LoginFormLabel
+                    htmlFor="login-username"
+                    isDarkTheme={isDarkTheme}
+                  >
                     USERNAME
                   </LoginFormLabel>
                   <LoginInput
@@ -103,10 +109,14 @@ class Login extends Component {
                     placeholder="Username"
                     onChange={this.onChangeUserName}
                     required
+                    isDarkTheme={isDarkTheme}
                   />
                 </LoginInputContainer>
                 <LoginInputContainer>
-                  <LoginFormLabel htmlFor="login-password">
+                  <LoginFormLabel
+                    htmlFor="login-password"
+                    isDarkTheme={isDarkTheme}
+                  >
                     PASSWORD
                   </LoginFormLabel>
                   <LoginInput
@@ -117,9 +127,10 @@ class Login extends Component {
                     placeholder="Password"
                     onChange={this.onChangePassword}
                     required
+                    isDarkTheme={isDarkTheme}
                   />
                 </LoginInputContainer>
-                <LoginShowPasswordContainer>
+                <LoginShowPasswordContainer isDarkTheme={isDarkTheme}>
                   <input
                     type="checkbox"
                     name="show-password"
@@ -132,7 +143,7 @@ class Login extends Component {
                 <LoginButtonContainer>
                   <LoginButton type="submit">Login</LoginButton>
                 </LoginButtonContainer>
-                <LoginText>
+                <LoginText isDarkTheme={isDarkTheme}>
                   Login and explore with pre-filled credentials
                 </LoginText>
               </LoginFormContainer>

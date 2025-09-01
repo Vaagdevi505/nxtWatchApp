@@ -3,7 +3,6 @@ import styled from 'styled-components'
 export const MenuBarContainer = styled.div`
   display: flex;
   width: 100%;
-  /* Use a prop to set the background color */
   background-color: ${props => (props.isDarkTheme ? '#141414' : '#f1f5f9')};
   padding: 0.75rem;
   position: fixed;
@@ -12,13 +11,13 @@ export const MenuBarContainer = styled.div`
   .menu-link {
     color: ${props => (props.isDarkTheme ? '#f1f5f9' : '#555')};
   }
-  
+
   .active-menu-link {
     background-color: ${props => (props.isDarkTheme ? '#424242' : '#e2e8f0')};
     color: ${props => (props.isDarkTheme ? '#f1f5f9' : '#1e293b')};
     font-weight: bold;
     svg {
-       color: red;
+      color: red;
     }
   }
 
@@ -49,7 +48,7 @@ export const MenuItems = styled.ul`
 `
 export const MenuItem = styled.li`
   width: 100%;
-  
+
   .menu-link {
     display: flex;
     align-items: center;
@@ -67,13 +66,20 @@ export const MenuItem = styled.li`
   }
 `
 export const MenuItemText = styled.span`
-  display: none;
+  font-size: 0.9rem;
+
+  @media screen and (max-width: 767px) {
+    position: absolute;
+    left: -9999px;
+    font-size: 0;
+  }
 
   @media screen and (min-width: 768px) {
     display: inline;
     font-size: 0.9rem;
   }
 `
+
 export const ContactUs = styled.div`
   display: none;
 

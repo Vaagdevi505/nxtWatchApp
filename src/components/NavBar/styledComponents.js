@@ -7,7 +7,6 @@ export const NavbarContainer = styled.div`
   box-sizing: border-box;
   padding: 0.75rem 2rem;
   width: 100%;
-  /* Use a prop to set the background color */
   background-color: ${props => (props.isDarkTheme ? '#141414' : '#f1f5f9')};
   position: fixed;
 

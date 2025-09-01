@@ -23,8 +23,10 @@ const NotFound = () => (
           <div className="main-content">
             <NotFoundView>
               <NotFoundImage src={imageUrl} alt="not found" />
-              <NotFoundTitle>Page Not Found</NotFoundTitle>
-              <NotFoundText>
+              <NotFoundTitle as="h1" isDarkTheme={isDarkTheme}>
+                Page Not Found
+              </NotFoundTitle>
+              <NotFoundText as="p" isDarkTheme={isDarkTheme}>
                 we are sorry, the page you requested could not be found.
               </NotFoundText>
             </NotFoundView>

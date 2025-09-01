@@ -8,7 +8,7 @@ export const HomeVideosList = styled.ul`
   list-style: none;
 `
 export const HomeVideo = styled.li`
- a {
+  a {
     text-decoration: none;
   }
 `
@@ -99,7 +99,6 @@ export const FailureViewText = styled.p`
   font-size: 1rem;
   margin-bottom: 15px;
   color: ${props => (props.isDarkTheme ? '#e2e8f0' : '#475569')};
-
 
   @media screen and (max-width: 768px) {
     font-size: 0.9rem;

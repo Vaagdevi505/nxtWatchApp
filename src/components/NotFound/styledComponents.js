@@ -9,6 +9,7 @@ export const NotFoundView = styled.div`
   gap: 1rem;
   text-align: center;
 `
+
 export const NotFoundImage = styled.img`
   margin-top: 70px;
   width: 300px;
@@ -17,13 +18,15 @@ export const NotFoundImage = styled.img`
     width: 400px !important;
   }
 `
+
 export const NotFoundTitle = styled.h1`
   font-size: 20px;
   font-weight: 600;
   margin-bottom: 10px;
-  color: #111;
+  color: ${props => (props.isDarkTheme ? '#ffffff' : '#111')};
 `
+
 export const NotFoundText = styled.p`
-  color: #444;
   font-size: 15px;
+  color: ${props => (props.isDarkTheme ? '#ffffff' : '#444')};
 `

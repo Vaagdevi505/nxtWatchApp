@@ -72,7 +72,6 @@ export const FailureViewTitle = styled.h1`
   margin: 10px 0;
   color: ${props => (props.isDarkTheme ? '#ffffff' : '#1e293b')};
 
-
   @media screen and (max-width: 768px) {
     font-size: 1rem;
   }

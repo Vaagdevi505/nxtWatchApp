@@ -1,5 +1,3 @@
-// src/components/SavedVideos/styledComponents.js
-
 import styled from 'styled-components'
 
 export const SavedVideosBanner = styled.div`
@@ -7,7 +5,6 @@ export const SavedVideosBanner = styled.div`
   display: flex;
   justify-content: flex-start;
   align-items: center;
-  /* margin-top: 60px;  <-- REMOVE THIS LINE */
 `
 
 export const SavedVideosBannerTitle = styled.h1`
@@ -16,9 +13,9 @@ export const SavedVideosBannerTitle = styled.h1`
   font-size: 25px;
   font-weight: 600;
 `
-export const SavedVideosContainer = styled.div`
-  /* No special margin needed here anymore */
-`
+
+export const SavedVideosContainer = styled.div``
+
 export const SavedVideosList = styled.ul`
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
@@ -84,7 +81,7 @@ export const SavedVideoStats = styled.div`
   color: #777;
 `
 export const NoSavedVideosView = styled.div`
-  min-height:70vh;
+  min-height: 70vh;
   display: flex;
   flex-direction: column;
   justify-content: center;

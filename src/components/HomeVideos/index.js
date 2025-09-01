@@ -108,31 +108,31 @@ class HomeVideos extends Component {
               {videos.map(video => (
                 <li key={video.id}>
                   <HomeVideo>
-                  <Link to={`/videos/${video.id}`}>
-                    <HomeVideoCard>
-                      <HomeVideoThumbnail>
-                        <img src={video.thumbnailUrl} alt="video thumbnail" />
-                      </HomeVideoThumbnail>
-                      <HomeVideoFooter>
-                        <img
-                          src={video.channel.profileImageUrl}
-                          alt="channel logo"
-                        />
-                        <HomeVideoDetails>
-                          <HomeVideoName isDarkTheme={isDarkTheme}>
-                            {video.title}
-                          </HomeVideoName>
-                          <HomeVideoChannelName isDarkTheme={isDarkTheme}>
-                            {video.channel.name}
-                          </HomeVideoChannelName>
-                          <HomeVideoStats>
-                            <p>{video.viewCount} Views</p>
-                            <p>{video.publishedAt}</p>
-                          </HomeVideoStats>
-                        </HomeVideoDetails>
-                      </HomeVideoFooter>
-                    </HomeVideoCard>
-                  </Link>
+                    <Link to={`/videos/${video.id}`}>
+                      <HomeVideoCard>
+                        <HomeVideoThumbnail>
+                          <img src={video.thumbnailUrl} alt="video thumbnail" />
+                        </HomeVideoThumbnail>
+                        <HomeVideoFooter>
+                          <img
+                            src={video.channel.profileImageUrl}
+                            alt="channel logo"
+                          />
+                          <HomeVideoDetails>
+                            <HomeVideoName isDarkTheme={isDarkTheme}>
+                              {video.title}
+                            </HomeVideoName>
+                            <HomeVideoChannelName isDarkTheme={isDarkTheme}>
+                              {video.channel.name}
+                            </HomeVideoChannelName>
+                            <HomeVideoStats>
+                              <p>{video.viewCount} Views</p>
+                              <p>{video.publishedAt}</p>
+                            </HomeVideoStats>
+                          </HomeVideoDetails>
+                        </HomeVideoFooter>
+                      </HomeVideoCard>
+                    </Link>
                   </HomeVideo>
                 </li>
               ))}

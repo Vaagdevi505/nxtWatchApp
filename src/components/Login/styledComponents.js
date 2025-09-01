@@ -1,5 +1,3 @@
-// src/components/Login/styledComponents.js
-
 import styled from 'styled-components'
 
 export const LoginPageContainer = styled.div`
