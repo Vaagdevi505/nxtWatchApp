@@ -37,8 +37,8 @@ function App() {
                     path="/saved-videos"
                     component={SavedVideos}
                   />
-                  <Route path="/bad-path" component={NotFound} />
-                  <Redirect to="/bad-path" />
+                  <Route path="/not-found" component={NotFound} />
+                  <Redirect to="/not-found" />
                 </Switch>
               )
             }}
